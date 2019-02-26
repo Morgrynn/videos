@@ -3,16 +3,22 @@ import SearchBar from './SearchBar';
 import youtube from '../apis/youtube';
 
 class App extends React.Component {
-    state = {  }
+    state = { 
+        videos: [],
 
-    onSearchSubmit = (term) => {
+    }
+
+    onSearchSubmit = async (term) => {
         // console.log(term)
-        youtube.get('/search', {
+        const response = await youtube.get('/search', {
             params: {
                 q: term
             }
         })
-            
+        // console.log(response) 
+        this.setState({
+            videos: response.data.items
+        }) 
     }
 
     render() { 
@@ -20,6 +26,7 @@ class App extends React.Component {
             <div className="container">
                 <div className="flex-row">
                     <SearchBar onSearchSubmit={this.onSearchSubmit} />
+                    {this.state.videos.length}
                 </div>
             </div>
          );
