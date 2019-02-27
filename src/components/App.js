@@ -1,6 +1,7 @@
 import React from 'react';
 import SearchBar from './SearchBar';
 import youtube from '../apis/youtube';
+import VideoList from './VideoList';
 
 class App extends React.Component {
     state = { 
@@ -26,7 +27,8 @@ class App extends React.Component {
             <div className="container">
                 <div className="flex-row">
                     <SearchBar onSearchSubmit={this.onSearchSubmit} />
-                    {this.state.videos.length}
+                    <VideoList videos={this.state.videos} />
+                    
                 </div>
             </div>
          );
